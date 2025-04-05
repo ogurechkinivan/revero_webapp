@@ -1,42 +1,60 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Revero — Главная</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Revero WebApp</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    body { font-family: sans-serif; background: #111; color: #fff; margin: 0; padding: 20px; }
-    .block { margin-bottom: 20px; }
-    .btn { background: #b4ff00; color: #000; padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; }
-    .crypto-list { list-style: none; padding: 0; }
-    .crypto-list li { display: flex; justify-content: space-between; margin: 10px 0; }
-    .change { color: red; }
-    .user { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .user img { border-radius: 50%; width: 40px; height: 40px; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #121212;
+      color: #fff;
+      text-align: center;
+    }
+    .avatar {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <div class="user">
-    <img src="https://via.placeholder.com/40" alt="avatar" />
-    <div>
-      <strong>@username</strong><br>
-      <small>0 ₽</small>
-    </div>
-  </div>
-  <div class="block">
-    <button class="btn">Пополнить</button>
-  </div>
-  <div class="block">
-    <img src="https://via.placeholder.com/300x100/00ff00/000000?text=Главный+приз" style="width:100%; border-radius: 12px;" />
-  </div>
-  <div class="block">
-    <div>Популярные криптовалюты</div>
-    <ul class="crypto-list">
-      <li><span>BTC</span><span>6 884 363₽ <span class="change">-5.13%</span></span></li>
-      <li><span>ETH</span><span>149 964₽ <span class="change">-6.19%</span></span></li>
-      <li><span>SOL</span><span>9 678₽ <span class="change">-11.63%</span></span></li>
-      <li><span>TON</span><span>301₽ <span class="change">-10.03%</span></span></li>
-    </ul>
-  </div>
+  <h2>👋 Привет, <span id="userName">друг</span>!</h2>
+  <img id="avatar" class="avatar" src="" alt="Аватар" style="display: none;" />
+
+  <button onclick="sendConfirm()">Продолжить</button>
+
+  <script>
+    Telegram.WebApp.ready(); // Обязательно!
+    const user = Telegram.WebApp.initDataUnsafe.user;
+
+    if (user) {
+      document.getElementById("userName").textContent = user.first_name || "друг";
+
+      if (user.photo_url) {
+        const avatar = document.getElementById("avatar");
+        avatar.src = user.photo_url;
+        avatar.style.display = "block";
+      }
+    }
+
+    function sendConfirm() {
+      const data = JSON.stringify({ name: user?.first_name || "друг" });
+      Telegram.WebApp.sendData(data); // отправка боту
+      Telegram.WebApp.close(); // закрытие WebApp
+    }
+  </script>
 </body>
 </html>
