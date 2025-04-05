@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revero - Партнёры</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+    }
+    header, footer {
+      padding: 1rem;
+      background-color: #1a1a1a;
+    }
+    main {
+      padding: 1rem;
+    }
+    .invite-box {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: block;
+      background: #b4ff1f;
+      color: #000;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .link-box {
+      background: #0f0f0f;
+      padding: 0.5rem;
+      font-size: 14px;
+      color: #b4ff1f;
+      overflow-wrap: anywhere;
+    }
+    .stats, .rules, .history {
+      margin-top: 1.5rem;
+    }
+    .stats-box {
+      display: flex;
+      justify-content: space-between;
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .rules {
+      font-size: 14px;
+      color: #ccc;
+    }
+    .rules span {
+      color: #b4ff1f;
+    }
+    .empty {
+      text-align: center;
+      color: #777;
+      margin: 2rem 0;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      border-top: 1px solid #333;
+    }
+    nav a {
+      color: #888;
+      text-align: center;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    nav a.active {
+      color: #b4ff1f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Revero</strong> — Партнёры
+  </header>
+
+  <main>
+    <div class="invite-box">
+      <p><strong>Приглашайте партнёров по ссылке, получайте <span style="color:#b4ff1f">7% с депозитов</span></strong></p>
+      <div class="btn">Пригласить друга</div>
+      <div class="link-box">https://t.me/ReveroAppbot?start=ref_596785929</div>
+    </div>
+
+    <div class="stats">
+      <h3>Статистика</h3>
+      <div class="stats-box">
+        <div><strong>0</strong><br>Партнёров</div>
+        <div><strong>0₽</strong><br>Заработано</div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <p><span>📘 Правила приглашения партнёров:</span><br>Пригласите партнёра по своей ссылке, далее после пополнения им депозита вы получите % на свой баланс</p>
+    </div>
+
+    <div class="history">
+      <h3>Последние отчисления партнёров</h3>
+      <div class="empty">❌ Пока пусто</div>
+    </div>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="wallet.html">Кошелек</a>
+      <a href="account.html">Кабинет</a>
+      <a class="active" href="#">Партнеры</a>
+      <a href="training.html">Обучение</a>
+    </nav>
+  </footer>
+</body>
+</html>

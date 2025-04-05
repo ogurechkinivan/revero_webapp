@@ -1,1 +1,115 @@
-<!DOCTYPE html><html><body><h1 style='color:white;background:black;padding:20px;'>💼 Страница кошелька</h1></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revero - Кошелёк</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+    }
+    header, footer {
+      padding: 1rem;
+      background: #1a1a1a;
+    }
+    .balance, .actions, .info, .transactions {
+      padding: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #b4ff1f;
+      color: #000;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      width: 45%;
+      margin: 0.5rem 2.5%;
+    }
+    .calculator {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #1a1a1a;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .info a {
+      color: #b4ff1f;
+      text-decoration: none;
+    }
+    .transactions .empty {
+      text-align: center;
+      color: #888;
+      margin-top: 2rem;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      border-top: 1px solid #333;
+    }
+    nav a {
+      color: #888;
+      text-align: center;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    nav a.active {
+      color: #b4ff1f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <strong>@deminion12</strong> | ID: 596785929
+    </div>
+  </header>
+
+  <main>
+    <div class="balance">
+      <h2>0.00₽</h2>
+      <p>+0.00₽ (+0.00%)</p>
+    </div>
+
+    <div class="actions">
+      <div class="btn">Пополнить</div>
+      <div class="btn">Вывести</div>
+    </div>
+
+    <div class="calculator">
+      <span>Калькулятор дохода</span>
+      <span>🧮</span>
+    </div>
+
+    <div class="info">
+      <p>Как пополнить депозит с помощью банковской карты</p>
+      <a href="#">Узнать →</a>
+    </div>
+
+    <div class="transactions">
+      <h3>Последние транзакции</h3>
+      <div class="empty">❌ Пока пусто</div>
+    </div>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a class="active" href="#">Кошелек</a>
+      <a href="account.html">Кабинет</a>
+      <a href="partners.html">Партнеры</a>
+      <a href="training.html">Обучение</a>
+    </nav>
+  </footer>
+</body>
+</html>

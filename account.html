@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revero - Кабинет</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+    }
+    header, footer {
+      padding: 1rem;
+      background-color: #1a1a1a;
+    }
+    main {
+      padding: 1rem;
+    }
+    .section {
+      margin-bottom: 1.5rem;
+    }
+    .highlight {
+      color: #b4ff1f;
+    }
+    .btn {
+      display: inline-block;
+      background: #b4ff1f;
+      color: #000;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      margin-right: 1rem;
+    }
+    .tariff {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      border-top: 1px solid #333;
+    }
+    nav a {
+      color: #888;
+      text-align: center;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    nav a.active {
+      color: #b4ff1f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Revero</strong> — Кабинет</div>
+  </header>
+
+  <main>
+    <div class="section">
+      <p>Ваш депозит:</p>
+      <h2>0.00₽</h2>
+      <p>Тариф: <span class="highlight">Нет</span></p>
+      <p><span class="highlight">1.4%</span> в сутки</p>
+      <p>Накоплено: 0.00₽ | Прибыль: <span class="highlight">+0.00%</span></p>
+    </div>
+
+    <div class="section">
+      <div class="btn">Инвестировать</div>
+      <div class="btn" style="background:#333; color:#fff;">Собрать</div>
+    </div>
+
+    <div class="section tariff">
+      <h3>Тарифные планы:</h3>
+      <p><strong>Нет тарифа</strong> — Текущий тариф</p>
+      <p>0%</p>
+      <p>До следующего тарифа: 1₽</p>
+    </div>
+
+    <div class="section">
+      <h3>Всего заработано</h3>
+      <p>0.00₽ >> 0.00₽</p>
+    </div>
+
+    <div class="section">
+      <h3>Статистика терминала</h3>
+      <p style="color:#555;">(график-заглушка)</p>
+    </div>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="wallet.html">Кошелек</a>
+      <a class="active" href="#">Кабинет</a>
+      <a href="partners.html">Партнеры</a>
+      <a href="training.html">Обучение</a>
+    </nav>
+  </footer>
+</body>
+</html>
