@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Revero — Главная</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: sans-serif; background: #111; color: #fff; margin: 0; padding: 20px; }
+    .block { margin-bottom: 20px; }
+    .btn { background: #b4ff00; color: #000; padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; }
+    .crypto-list { list-style: none; padding: 0; }
+    .crypto-list li { display: flex; justify-content: space-between; margin: 10px 0; }
+    .change { color: red; }
+    .user { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .user img { border-radius: 50%; width: 40px; height: 40px; }
+  </style>
+</head>
+<body>
+  <div class="user">
+    <img src="https://via.placeholder.com/40" alt="avatar" />
+    <div>
+      <strong>@username</strong><br>
+      <small>0 ₽</small>
+    </div>
+  </div>
+  <div class="block">
+    <button class="btn">Пополнить</button>
+  </div>
+  <div class="block">
+    <img src="https://via.placeholder.com/300x100/00ff00/000000?text=Главный+приз" style="width:100%; border-radius: 12px;" />
+  </div>
+  <div class="block">
+    <div>Популярные криптовалюты</div>
+    <ul class="crypto-list">
+      <li><span>BTC</span><span>6 884 363₽ <span class="change">-5.13%</span></span></li>
+      <li><span>ETH</span><span>149 964₽ <span class="change">-6.19%</span></span></li>
+      <li><span>SOL</span><span>9 678₽ <span class="change">-11.63%</span></span></li>
+      <li><span>TON</span><span>301₽ <span class="change">-10.03%</span></span></li>
+    </ul>
+  </div>
+</body>
+</html>
