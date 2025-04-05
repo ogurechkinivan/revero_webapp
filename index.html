@@ -1,60 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Revero WebApp</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revero - Главная</title>
   <style>
     body {
+      margin: 0;
       font-family: sans-serif;
-      padding: 20px;
-      background-color: #121212;
+      background-color: #0f0f0f;
       color: #fff;
+    }
+    header, footer {
+      padding: 1rem;
+      background-color: #1a1a1a;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo img {
+      height: 32px;
+    }
+    .balance, .banner, .recommendations, .live {
+      padding: 1rem;
+    }
+    .btn {
+      background: #b4ff1f;
+      color: #000;
+      padding: 0.75rem 1rem;
       text-align: center;
-    }
-    .avatar {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      margin-bottom: 15px;
-    }
-    button {
-      background-color: #2a9d8f;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
       border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    .live .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      border-top: 1px solid #333;
+    }
+    nav a {
+      color: #888;
+      text-align: center;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    nav a.active {
+      color: #b4ff1f;
     }
   </style>
 </head>
 <body>
-  <h2>👋 Привет, <span id="userName">друг</span>!</h2>
-  <img id="avatar" class="avatar" src="" alt="Аватар" style="display: none;" />
+  <header>
+    <div class="logo">
+      <span>Revero</span>
+      <span>Мини-приложение</span>
+    </div>
+  </header>
 
-  <button onclick="sendConfirm()">Продолжить</button>
+  <main>
+    <div class="balance">
+      <p>Всего активов (RUB)</p>
+      <h2>0₽</h2>
+      <div class="btn">Пополнить</div>
+    </div>
 
-  <script>
-    Telegram.WebApp.ready(); // Обязательно!
-    const user = Telegram.WebApp.initDataUnsafe.user;
+    <div class="banner">
+      <img src="lamborghini_banner.png" alt="Lamborghini Huracan" style="width: 100%; border-radius: 12px;" />
+    </div>
 
-    if (user) {
-      document.getElementById("userName").textContent = user.first_name || "друг";
+    <div class="recommendations">
+      <h3>Рекомендации</h3>
+      <p>TON — <span style="color: #b4ff1f">+1.4% в сутки</span></p>
+      <p>USDT — <span style="color: #b4ff1f">+1.7% в сутки</span></p>
+      <p>Bitcoin — <span style="color: #b4ff1f">+2.1% в сутки</span></p>
+    </div>
 
-      if (user.photo_url) {
-        const avatar = document.getElementById("avatar");
-        avatar.src = user.photo_url;
-        avatar.style.display = "block";
-      }
-    }
+    <div class="live">
+      <h3>Live сделки</h3>
+      <div class="item"><span>ID: 3450669805</span><span style="color: lime">+518.09₽</span></div>
+      <div class="item"><span>ID: 2152569438</span><span style="color: red">-352₽</span></div>
+      <div class="item"><span>ID: 3767145403</span><span style="color: lime">+1035.15₽</span></div>
+    </div>
+  </main>
 
-    function sendConfirm() {
-      const data = JSON.stringify({ name: user?.first_name || "друг" });
-      Telegram.WebApp.sendData(data); // отправка боту
-      Telegram.WebApp.close(); // закрытие WebApp
-    }
-  </script>
+  <footer>
+    <nav>
+      <a class="active" href="#">Главная</a>
+      <a href="wallet.html">Кошелек</a>
+      <a href="account.html">Кабинет</a>
+      <a href="partners.html">Партнеры</a>
+      <a href="training.html">Обучение</a>
+    </nav>
+  </footer>
 </body>
 </html>
