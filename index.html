@@ -20,11 +20,12 @@
       align-items: center;
       justify-content: space-between;
     }
-    .logo img {
-      height: 32px;
-    }
-    .balance, .banner, .recommendations, .live {
+    .balance-box {
       padding: 1rem;
+    }
+    .balance-box h2 {
+      margin: 0;
+      font-size: 24px;
     }
     .btn {
       background: #b4ff1f;
@@ -34,6 +35,32 @@
       border-radius: 8px;
       margin: 1rem 0;
       font-weight: bold;
+      display: inline-block;
+    }
+    .banner img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .recommendations {
+      padding: 0 1rem;
+    }
+    .recommend-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #222;
+    }
+    .recommend-label {
+      background: #1a1a1a;
+      color: #b4ff1f;
+      font-size: 12px;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+    .live {
+      padding: 1rem;
     }
     .live .item {
       display: flex;
@@ -70,21 +97,30 @@
   </header>
 
   <main>
-    <div class="balance">
+    <div class="balance-box">
       <p>Всего активов (RUB)</p>
       <h2>0₽</h2>
       <div class="btn">Пополнить</div>
     </div>
 
     <div class="banner">
-      <img src="lamborghini_banner.png" alt="Lamborghini Huracan" style="width: 100%; border-radius: 12px;" />
+      <img src="lamborghini_banner.png" alt="Lamborghini Huracan" />
     </div>
 
     <div class="recommendations">
       <h3>Рекомендации</h3>
-      <p>TON — <span style="color: #b4ff1f">+1.4% в сутки</span></p>
-      <p>USDT — <span style="color: #b4ff1f">+1.7% в сутки</span></p>
-      <p>Bitcoin — <span style="color: #b4ff1f">+2.1% в сутки</span></p>
+      <div class="recommend-item">
+        <span><strong>TON</strong> <span class="recommend-label">Для новых пользователей</span></span>
+        <span style="color:#b4ff1f">+1.4% в сутки</span>
+      </div>
+      <div class="recommend-item">
+        <span><strong>USDT</strong> <span class="recommend-label">Рекомендован</span></span>
+        <span style="color:#b4ff1f">+1.7% в сутки</span>
+      </div>
+      <div class="recommend-item">
+        <span><strong>Bitcoin</strong> <span class="recommend-label">Приватный</span></span>
+        <span style="color:#b4ff1f">+2.1% в сутки</span>
+      </div>
     </div>
 
     <div class="live">
@@ -92,6 +128,7 @@
       <div class="item"><span>ID: 3450669805</span><span style="color: lime">+518.09₽</span></div>
       <div class="item"><span>ID: 2152569438</span><span style="color: red">-352₽</span></div>
       <div class="item"><span>ID: 3767145403</span><span style="color: lime">+1035.15₽</span></div>
+      <div class="item"><span>ID: 4155314917</span><span style="color: lime">+2 604.87₽</span></div>
     </div>
   </main>
 
