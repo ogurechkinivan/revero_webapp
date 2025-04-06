@@ -375,7 +375,7 @@ body {
       lastId++;
       const amount = Math.floor(Math.random() * (24000 - 500 + 1)) + 500;
       const time = generateRandomTime();
-      const isDeposit = Math.random() > 0.4; // 60% шанс пополнения, 40% вывода
+      const isDeposit = Math.random() > 0.3; // 60% шанс пополнения, 40% вывода
 
       const newItem = document.createElement('div');
       newItem.className = 'item';
