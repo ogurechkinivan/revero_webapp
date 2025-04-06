@@ -5,63 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Revero - Партнёры</title>
   <style>
+    main {
+      padding-bottom: 100px;
+    }
     body {
       margin: 0;
       font-family: sans-serif;
-      background-color: #0f0f0f;
+      background: #0f0f0f;
       color: #fff;
     }
-    header, footer {
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 1rem;
-      background-color: #1a1a1a;
+      background: #1a1a1a;
+      margin-bottom: 1rem;
     }
-    main {
+    .topbar .username {
+      background: #2a2a2a;
+      color: #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .section {
       padding: 1rem;
+      margin-bottom: 1rem;
     }
     .invite-box {
       background: #1a1a1a;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .invite-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #b4ff1f10);
+      pointer-events: none;
     }
     .btn {
-      display: block;
       background: #b4ff1f;
       color: #000;
-      padding: 0.75rem;
-      border-radius: 8px;
+      padding: 1rem;
+      border-radius: 12px;
       font-weight: bold;
       text-align: center;
       margin: 1rem 0;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .btn:active {
+      transform: scale(0.98);
     }
     .link-box {
-      background: #0f0f0f;
-      padding: 0.5rem;
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 12px;
       font-size: 14px;
       color: #b4ff1f;
       overflow-wrap: anywhere;
+      word-break: break-all;
+      margin-top: 1rem;
+      user-select: all;
     }
-    .stats, .rules, .history {
-      margin-top: 1.5rem;
-    }
-    .stats-box {
-      display: flex;
-      justify-content: space-between;
+    .stats-card {
       background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .stats-card h3 {
+      margin-top: 0;
+      color: #888;
+      font-size: 16px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .stat-box {
+      background: #2a2a2a;
       padding: 1rem;
-      border-radius: 8px;
-    }
-    .rules {
-      font-size: 14px;
-      color: #ccc;
-    }
-    .rules span {
-      color: #b4ff1f;
-    }
-    .empty {
+      border-radius: 12px;
       text-align: center;
-      color: #777;
-      margin: 2rem 0;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #b4ff1f;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      color: #888;
+      font-size: 14px;
+    }
+    .rules-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .rules-card h3 {
+      margin-top: 0;
+      color: #888;
+      font-size: 16px;
+    }
+    .rules-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .rules-text span {
+      color: #b4ff1f;
+      font-weight: bold;
+    }
+    .history-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .history-card h3 {
+      margin-top: 0;
+      color: #888;
+      font-size: 16px;
+    }
+    .empty-state {
+      text-align: center;
+      color: #555;
+      padding: 2rem 0;
     }
     nav {
       position: fixed;
@@ -70,14 +153,26 @@
       background: #1a1a1a;
       display: flex;
       justify-content: space-around;
-      padding: 0.5rem 0;
+      padding: 0.75rem 0;
       border-top: 1px solid #333;
+      z-index: 999;
+      min-height: 72px;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
     }
     nav a {
       color: #888;
       text-align: center;
       font-size: 12px;
       text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    nav a svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
     }
     nav a.active {
       color: #b4ff1f;
@@ -85,43 +180,121 @@
   </style>
 </head>
 <body>
-  <header>
-    <strong>Revero</strong> — Партнёры
-  </header>
-
   <main>
-    <div class="invite-box">
-      <p><strong>Приглашайте партнёров по ссылке, получайте <span style="color:#b4ff1f">7% с депозитов</span></strong></p>
-      <div class="btn">Пригласить друга</div>
-      <div class="link-box">https://t.me/ReveroAppbot?start=ref_596785929</div>
+    <div class="topbar">
+      <div class="username" id="tg-username">@user</div>
     </div>
 
-    <div class="stats">
-      <h3>Статистика</h3>
-      <div class="stats-box">
-        <div><strong>0</strong><br>Партнёров</div>
-        <div><strong>0₽</strong><br>Заработано</div>
+    <div class="section">
+      <div class="invite-box">
+        <div style="font-size: 20px; font-weight: bold; margin-bottom: 1rem;">
+          Приглашайте партнёров и зарабатывайте
+        </div>
+        <div style="color: #888; margin-bottom: 1rem;">
+          Получайте <span style="color:#b4ff1f; font-weight: bold;">7% с депозитов</span> ваших рефералов
+        </div>
+        <div class="btn">Пригласить друга</div>
+        <div class="link-box" id="ref-link">https://t.me/ReveroAppbot?start=ref_596785929</div>
       </div>
-    </div>
 
-    <div class="rules">
-      <p><span>📘 Правила приглашения партнёров:</span><br>Пригласите партнёра по своей ссылке, далее после пополнения им депозита вы получите % на свой баланс</p>
-    </div>
+      <div class="stats-card">
+        <h3>Статистика партнёрской программы</h3>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Активных партнёров</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">0₽</div>
+            <div class="stat-label">Заработано всего</div>
+          </div>
+        </div>
+      </div>
 
-    <div class="history">
-      <h3>Последние отчисления партнёров</h3>
-      <div class="empty">❌ Пока пусто</div>
+      <div class="rules-card">
+        <h3>Правила партнёрской программы</h3>
+        <div class="rules-text">
+          <p><span>📘 Как это работает:</span></p>
+          <p>1. Пригласите партнёра по своей реферальной ссылке</p>
+          <p>2. После пополнения депозита партнёром вы получите <span>7%</span> на свой баланс</p>
+          <p>3. Выплаты происходят моментально и автоматически</p>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <h3>История партнёрских отчислений</h3>
+        <div class="empty-state">
+          <div style="font-size: 32px; margin-bottom: 1rem;">📊</div>
+          <div>Здесь будет отображаться история<br>ваших партнёрских отчислений</div>
+        </div>
+      </div>
     </div>
   </main>
 
   <footer>
     <nav>
-      <a href="index.html">Главная</a>
-      <a href="wallet.html">Кошелек</a>
-      <a href="account.html">Кабинет</a>
-      <a class="active" href="#">Партнеры</a>
-      <a href="training.html">Обучение</a>
+      <a href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Главная
+      </a>
+      <a href="wallet.html">
+        <svg viewBox="0 0 24 24"><path d="M21 7H3V5h18v2zm0 2H3v10h18V9zM3 19c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3z"/></svg>
+        Кошелек
+      </a>
+      <a href="account.html">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 8 1.3 8 4v2H4v-2c0-2.7 5.3-4 8-4zm0-2a4 4 0 100-8 4 4 0 000 8z"/></svg>
+        Кабинет
+      </a>
+      <a class="active" href="#">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 2.05 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        Партнеры
+      </a>
+      <a href="training.html">
+        <svg viewBox="0 0 24 24"><path d="M12 3C8.1 3 5 6.1 5 10c0 3.9 3.1 7 7 7s7-3.1 7-7c0-3.9-3.1-7-7-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/></svg>
+        Обучение
+      </a>
     </nav>
   </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username");
+    const id = params.get("id");
+
+    if (username) {
+      const userSpan = document.getElementById("tg-username");
+      if (userSpan) {
+        userSpan.textContent = "@" + username;
+      }
+      
+      // Обновляем реферальную ссылку
+      const refLink = document.getElementById("ref-link");
+      if (refLink) {
+        refLink.textContent = `https://t.me/ReveroAppbot?start=ref_${id || '596785929'}`;
+      }
+    }
+
+    // Добавляем параметры к ссылкам навигации
+    if (username && id) {
+      document.querySelectorAll("nav a").forEach(link => {
+        const href = new URL(link.getAttribute("href"), window.location.origin);
+        href.searchParams.set("username", username);
+        href.searchParams.set("id", id);
+        link.setAttribute("href", href.pathname + href.search);
+      });
+    }
+
+    // Копирование реферальной ссылки при клике
+    document.querySelector('.link-box').addEventListener('click', function() {
+      const text = this.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = this.textContent;
+        this.textContent = 'Скопировано!';
+        setTimeout(() => {
+          this.textContent = originalText;
+        }, 1000);
+      });
+    });
+  </script>
 </body>
 </html>
