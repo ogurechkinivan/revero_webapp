@@ -277,33 +277,23 @@ body {
     }
   }
 
-  // Обработчики для скрытия клавиатуры
-  document.addEventListener('touchstart', function(e) {
-    if (!e.target.matches('input[type="number"]')) {
-      document.activeElement?.blur();
-    }
-  }, { passive: true });
-
+  // Добавляем обработчик для скрытия клавиатуры
   document.addEventListener('click', function(e) {
     if (!e.target.matches('input[type="number"]')) {
       document.activeElement?.blur();
     }
   });
 
-  // Обработчики для полей ввода
-  const numberInputs = document.querySelectorAll('input[type="number"]');
-  numberInputs.forEach(input => {
-    input.addEventListener('blur', function() {
-      window.scrollTo(0, 0);
-    });
-    
-    input.addEventListener('keypress', function(e) {
+  // Добавляем обработчик для кнопки "Готово" на мобильной клавиатуре
+  const amountInput = document.querySelector('input[type="number"]');
+  if (amountInput) {
+    amountInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
         this.blur();
       }
     });
-  });
+  }
 </script>
 </body>
 </html>
