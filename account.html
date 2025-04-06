@@ -107,6 +107,64 @@
       font-weight: bold;
       margin: 1rem 0;
     }
+    .tariff-list {
+      margin: 1rem 0;
+    }
+    .tariff-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: #2a2a2a;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .tariff-item:hover {
+      background: #333;
+    }
+    .tariff-item.selected {
+      background: #1e2b14;
+      border: 1px solid #b4ff1f;
+    }
+    .tariff-item.selected::before {
+      content: '✓';
+      position: absolute;
+      right: 1rem;
+      color: #b4ff1f;
+      font-weight: bold;
+    }
+    .tariff-item.selected .tariff-profit {
+      padding-right: 1.5rem;
+    }
+    .tariff-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tariff-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+    .tariff-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .tariff-name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .tariff-label {
+      color: #888;
+      font-size: 12px;
+    }
+    .tariff-profit {
+      color: #b4ff1f;
+      font-weight: bold;
+    }
     .progress-bar {
       height: 6px;
       background: #2a2a2a;
@@ -212,6 +270,53 @@
         <h3>Тарифные планы</h3>
         <div class="current-tariff">Нет тарифа</div>
         <div style="color: #888;">Текущая ставка: 0%</div>
+        
+        <div class="tariff-list">
+          <div class="tariff-item">
+            <div class="tariff-left">
+              <img src="https://cryptologos.cc/logos/toncoin-ton-logo.png" alt="TON" class="tariff-icon" />
+              <div class="tariff-info">
+                <div class="tariff-name">TON</div>
+                <div class="tariff-label">Для новых пользователей</div>
+              </div>
+            </div>
+            <div class="tariff-profit">+1.4% в сутки</div>
+          </div>
+
+          <div class="tariff-item">
+            <div class="tariff-left">
+              <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="tariff-icon" />
+              <div class="tariff-info">
+                <div class="tariff-name">USDT</div>
+                <div class="tariff-label">Стабильный рост</div>
+              </div>
+            </div>
+            <div class="tariff-profit">+1.6% в сутки</div>
+          </div>
+
+          <div class="tariff-item">
+            <div class="tariff-left">
+              <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" class="tariff-icon" />
+              <div class="tariff-info">
+                <div class="tariff-name">Bitcoin</div>
+                <div class="tariff-label">Максимальная доходность</div>
+              </div>
+            </div>
+            <div class="tariff-profit">+2.1% в сутки</div>
+          </div>
+
+          <div class="tariff-item">
+            <div class="tariff-left">
+              <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="ETH" class="tariff-icon" />
+              <div class="tariff-info">
+                <div class="tariff-name">ETH</div>
+                <div class="tariff-label">Премиум</div>
+              </div>
+            </div>
+            <div class="tariff-profit">+1.8% в сутки</div>
+          </div>
+        </div>
+
         <div style="margin: 1rem 0; color: #888;">До следующего тарифа</div>
         <div class="progress-bar">
           <div></div>
@@ -277,6 +382,31 @@
         link.setAttribute("href", href.pathname + href.search);
       });
     }
+
+    // Обработка выбора тарифа
+    document.querySelectorAll('.tariff-item').forEach(item => {
+      item.addEventListener('click', function() {
+        // Убираем выделение у всех тарифов
+        document.querySelectorAll('.tariff-item').forEach(i => {
+          i.classList.remove('selected');
+        });
+        
+        // Добавляем выделение выбранному тарифу
+        this.classList.add('selected');
+        
+        // Получаем данные о выбранном тарифе
+        const tariffName = this.querySelector('.tariff-name').textContent;
+        const tariffProfit = this.querySelector('.tariff-profit').textContent;
+        const profitValue = tariffProfit.match(/\+(.+)%/)[1];
+        
+        // Обновляем информацию на странице
+        document.querySelector('.current-tariff').textContent = tariffName;
+        document.querySelector('.stats-row .highlight').textContent = tariffName;
+        document.querySelector('.stats-row span.highlight:last-child').textContent = profitValue + '%';
+        document.querySelector('.tariff-card div[style*="color: #888"]').textContent = 
+          'Текущая ставка: ' + profitValue + '%';
+      });
+    });
   </script>
 </body>
 </html>
