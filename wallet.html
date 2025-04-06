@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Revero - Кошелёк</title>
@@ -64,6 +65,7 @@
       color: #000;
       font-weight: bold;
       border-radius: 10px;
+      margin: 0 1%;
     }
     .calculator {
       background: #1a1a1a;
@@ -143,9 +145,16 @@
       </div>
 
       <div class="calculator">
-        <span>Калькулятор дохода</span>
-        <span>🧮</span>
-      </div>
+  <form oninput="result.value = (amount.value * rate.value).toFixed(2) + '₽'">
+    <label>Сумма пополнения:</label><br>
+    <input type="number" name="amount" value="1000" min="0" style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 8px; border: none;">
+
+    <label>Процент в день (%):</label><br>
+    <input type="number" name="rate" value="0.017" step="0.001" min="0" style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 8px; border: none;">
+
+    <output name="result" style="display: block; margin-top: 1rem; font-weight: bold; font-size: 16px;">17.00₽</output>
+  </form>
+</div>
 
       <div class="info-box">
         <p>Как пополнить депозит с помощью банковской карты</p>
