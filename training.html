@@ -158,6 +158,57 @@
     nav a.active {
       color: #b4ff1f;
     }
+    /* Стили для блока криптовалют */
+    .crypto-grid {
+      display: grid;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .crypto-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 12px;
+      gap: 1rem;
+    }
+    .crypto-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .crypto-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+    .crypto-name {
+      font-weight: bold;
+    }
+    .crypto-symbol {
+      color: #888;
+      font-size: 12px;
+    }
+    .crypto-price {
+      font-weight: bold;
+      text-align: right;
+    }
+    .crypto-change {
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .crypto-change.positive {
+      background: #1e2b14;
+      color: #b4ff1f;
+    }
+    .crypto-change.negative {
+      background: #2b1414;
+      color: #ff4f4f;
+    }
+    /* Конец стилей для блока криптовалют */
   </style>
 </head>
 <body>
@@ -216,6 +267,45 @@
           <div class="faq-text">Приглашайте новых пользователей по своей реферальной ссылке и получайте 7% с каждого пополнения баланса. Выплаты происходят моментально.</div>
         </div>
       </div>
+
+      <div class="card">
+        <h3>Популярные криптовалюты</h3>
+        <div class="crypto-grid">
+          <div class="crypto-item">
+            <div class="crypto-info">
+              <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="BTC" class="crypto-icon">
+              <div>
+                <div class="crypto-name">Bitcoin</div>
+                <div class="crypto-symbol">BTC</div>
+              </div>
+            </div>
+            <div class="crypto-price">0₽</div>
+            <div class="crypto-change positive">+0.00%</div>
+          </div>
+          <div class="crypto-item">
+            <div class="crypto-info">
+              <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="ETH" class="crypto-icon">
+              <div>
+                <div class="crypto-name">Ethereum</div>
+                <div class="crypto-symbol">ETH</div>
+              </div>
+            </div>
+            <div class="crypto-price">0₽</div>
+            <div class="crypto-change positive">+0.00%</div>
+          </div>
+          <div class="crypto-item">
+            <div class="crypto-info">
+              <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="crypto-icon">
+              <div>
+                <div class="crypto-name">Tether</div>
+                <div class="crypto-symbol">USDT</div>
+              </div>
+            </div>
+            <div class="crypto-price">0₽</div>
+            <div class="crypto-change positive">+0.00%</div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -265,6 +355,54 @@
         link.setAttribute("href", href.pathname + href.search);
       });
     }
+
+    // Функция для форматирования цены
+    function formatPrice(price) {
+      return new Intl.NumberFormat('ru-RU').format(Math.round(price)) + '₽';
+    }
+
+    // Функция для обновления цен криптовалют
+    async function updateCryptoPrices() {
+      try {
+        // Получаем курсы криптовалют
+        const coins = ['bitcoin', 'ethereum', 'tether'];
+        const responses = await Promise.all(
+          coins.map(coin => 
+            fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=rub,usd&include_24h_change=true`)
+              .then(response => response.json())
+          )
+        );
+
+        // Обновляем цены на странице
+        const priceElements = document.querySelectorAll('.crypto-price');
+        const changeElements = document.querySelectorAll('.crypto-change');
+
+        responses.forEach((data, index) => {
+          const coin = coins[index];
+          const price = data[coin].rub;
+          const change = data[coin].usd_24h_change || 0;
+          
+          if (priceElements[index]) {
+            priceElements[index].textContent = formatPrice(price);
+          }
+          
+          if (changeElements[index]) {
+            const changeText = change.toFixed(2);
+            const isPositive = change >= 0;
+            changeElements[index].textContent = `${isPositive ? '+' : ''}${changeText}%`;
+            changeElements[index].className = `crypto-change ${isPositive ? 'positive' : 'negative'}`;
+          }
+        });
+      } catch (error) {
+        console.error('Ошибка при получении курсов криптовалют:', error);
+      }
+    }
+
+    // Обновляем цены при загрузке страницы
+    updateCryptoPrices();
+
+    // Обновляем цены каждые 30 секунд
+    setInterval(updateCryptoPrices, 30000);
   </script>
 </body>
 </html>
