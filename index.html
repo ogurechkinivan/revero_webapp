@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get("username");
+  const id = urlParams.get("id");
+  if (username && id) {
+    window.location.href = `/wallet.html?username=${username}&id=${id}`;
+  }
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revero - Главная</title>
