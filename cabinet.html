@@ -1,1 +1,252 @@
-<!DOCTYPE html><html><body><h1 style='color:white;background:black;padding:20px;'>📊 Личный кабинет</h1></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revero - Личный кабинет</title>
+  <style>
+    main {
+      padding-bottom: 100px;
+    }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    .topbar .assets {
+      background: #2a2a2a;
+      color: #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .section {
+      padding: 1rem;
+    }
+    .profile-box {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #2a2a2a;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+    .profile-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .profile-id {
+      color: #888;
+      font-size: 14px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .stat-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #b4ff1f;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      color: #888;
+      font-size: 14px;
+    }
+    .menu-list {
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #2a2a2a;
+      color: #fff;
+      text-decoration: none;
+    }
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    .menu-item svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 1rem;
+      fill: currentColor;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.75rem 0;
+      border-top: 1px solid #333;
+      z-index: 999;
+      min-height: 72px;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
+    }
+    nav a {
+      color: #888;
+      text-align: center;
+      font-size: 12px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    nav a svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    nav a.active {
+      color: #b4ff1f;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="topbar">
+      <div class="assets"><span id="tg-username">@user</span></div>
+    </div>
+
+    <div class="section">
+      <div class="profile-box">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-name" id="profile-name">Пользователь</div>
+        <div class="profile-id" id="profile-id">ID: 000000</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">0₽</div>
+          <div class="stat-label">Баланс</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Рефералов</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">0₽</div>
+          <div class="stat-label">Заработано</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Инвестиций</div>
+        </div>
+      </div>
+
+      <div class="menu-list">
+        <a href="#" class="menu-item">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          Настройки профиля
+        </a>
+        <a href="#" class="menu-item">
+          <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+          История операций
+        </a>
+        <a href="#" class="menu-item">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          Безопасность
+        </a>
+        <a href="#" class="menu-item">
+          <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+          Настройки
+        </a>
+        <a href="#" class="menu-item" style="color: #ff4f4f;">
+          <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+          Выйти
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Главная
+      </a>
+      <a href="wallet.html">
+        <svg viewBox="0 0 24 24"><path d="M21 7H3V5h18v2zm0 2H3v10h18V9zM3 19c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3z"/></svg>
+        Кошелек
+      </a>
+      <a class="active" href="#">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 8 1.3 8 4v2H4v-2c0-2.7 5.3-4 8-4zm0-2a4 4 0 100-8 4 4 0 000 8z"/></svg>
+        Кабинет
+      </a>
+      <a href="partners.html">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 2.05 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        Партнеры
+      </a>
+      <a href="training.html">
+        <svg viewBox="0 0 24 24"><path d="M12 3C8.1 3 5 6.1 5 10c0 3.9 3.1 7 7 7s7-3.1 7-7c0-3.9-3.1-7-7-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/></svg>
+        Обучение
+      </a>
+    </nav>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username");
+    const id = params.get("id");
+
+    if (username) {
+      const userSpan = document.getElementById("tg-username");
+      const profileName = document.getElementById("profile-name");
+      if (userSpan && profileName) {
+        userSpan.textContent = "@" + username;
+        profileName.textContent = "@" + username;
+      }
+    }
+
+    if (id) {
+      const profileId = document.getElementById("profile-id");
+      if (profileId) {
+        profileId.textContent = "ID: " + id;
+      }
+    }
+
+    // Добавляем параметры к ссылкам навигации
+    if (username && id) {
+      document.querySelectorAll("nav a").forEach(link => {
+        const href = new URL(link.getAttribute("href"), window.location.origin);
+        href.searchParams.set("username", username);
+        href.searchParams.set("id", id);
+        link.setAttribute("href", href.pathname + href.search);
+      });
+    }
+  </script>
+</body>
+</html>
