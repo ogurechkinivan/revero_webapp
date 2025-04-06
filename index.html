@@ -152,6 +152,17 @@ body {
       font-size: 14px;
       box-shadow: 0 0 0 1px #2a2a2a;
       transition: transform 0.2s;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .live .item:hover {
       transform: scale(1.01);
@@ -167,10 +178,13 @@ body {
     }
     .live .amount {
       text-align: right;
+      color: #b4ff1f;
+      font-weight: bold;
     }
     .live .time {
       font-size: 12px;
       color: #888;
+      margin-top: 4px;
     }
     nav {
       position: fixed;
@@ -286,47 +300,8 @@ body {
     </div>
 
     <div class="live">
-      <h3>Live сделки</h3>
-      <div class="item">
-        <div class="info">
-          <div><strong>ID: 3450669805</strong></div>
-          <div class="desc">Пополнение баланса</div>
-        </div>
-        <div class="amount">
-          <div style="color: lime">+518.09₽</div>
-          <div class="time" data-time="1"></div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="info">
-          <div><strong>ID: 2152569438</strong></div>
-          <div class="desc">Вывод средств</div>
-        </div>
-        <div class="amount">
-          <div style="color: red">-352₽</div>
-          <div class="time" data-time="2"></div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="info">
-          <div><strong>ID: 3767145403</strong></div>
-          <div class="desc">Пополнение баланса</div>
-        </div>
-        <div class="amount">
-          <div style="color: lime">+1035.15₽</div>
-          <div class="time" data-time="3"></div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="info">
-          <div><strong>ID: 4155314917</strong></div>
-          <div class="desc">Пополнение баланса</div>
-        </div>
-        <div class="amount">
-          <div style="color: lime">+2604.87₽</div>
-          <div class="time" data-time="4"></div>
-        </div>
-      </div>
+      <h3>Последние операции</h3>
+      <!-- Транзакции будут добавляться сюда динамически -->
     </div>
       <div class="floating-btn">Пополнить</div>
   </main>
@@ -396,39 +371,75 @@ body {
     const transactions = [3450669805, 2152569438, 3767145403, 4155314917];
     let lastId = Math.max(...transactions);
 
-    function generateNewTransaction() {
+    function generateNewTransaction(animate = true) {
       lastId++;
       const amount = Math.floor(Math.random() * (24000 - 500 + 1)) + 500;
       const time = generateRandomTime();
+      const isDeposit = Math.random() > 0.4; // 60% шанс пополнения, 40% вывода
 
       const newItem = document.createElement('div');
       newItem.className = 'item';
-      newItem.style.opacity = '0';
-      newItem.style.transition = 'opacity 0.5s ease';
+      if (animate) {
+        newItem.style.opacity = '0';
+        newItem.style.transition = 'opacity 0.5s ease';
+      }
       newItem.innerHTML = `
         <div class="info">
           <div><strong>ID: ${lastId}</strong></div>
-          <div class="desc">Пополнение баланса</div>
+          <div class="desc">${isDeposit ? 'Пополнение баланса' : 'Вывод средств'}</div>
         </div>
         <div class="amount">
-          <div style="color: lime">+${amount.toLocaleString()}₽</div>
+          <div style="color: ${isDeposit ? '#b4ff1f' : '#ff4f4f'}">${isDeposit ? '+' : '-'}${amount.toLocaleString()}₽</div>
           <div class="time">${time}</div>
         </div>
       `;
 
-      const insertPoint = liveContainer.querySelectorAll('.item')[0];
-      liveContainer.insertBefore(newItem, insertPoint);
-      requestAnimationFrame(() => {
-        newItem.style.opacity = '1';
-      });
+      const insertPoint = liveContainer.querySelector('.item');
+      if (insertPoint) {
+        liveContainer.insertBefore(newItem, insertPoint);
+      } else {
+        liveContainer.appendChild(newItem);
+      }
+      
+      if (animate) {
+        requestAnimationFrame(() => {
+          newItem.style.opacity = '1';
+        });
+      }
 
       const items = liveContainer.querySelectorAll('.item');
-      if (items.length > 6) {
+      if (items.length > 5) {
         liveContainer.removeChild(items[items.length - 1]);
       }
     }
 
-    setInterval(generateNewTransaction, 3000); // каждые 7 секунд
+    // Генерируем первые 5 транзакций без анимации
+    for (let i = 0; i < 5; i++) {
+      generateNewTransaction(false);
+    }
+
+    // Устанавливаем интервал от 3 до 7 секунд для следующих транзакций
+    function setRandomInterval(callback, minDelay, maxDelay) {
+      let timeout;
+      
+      const runInterval = () => {
+        const timeoutFunction = () => {
+          callback();
+          runInterval();
+        };
+        
+        const delay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+        timeout = setTimeout(timeoutFunction, delay);
+      };
+      
+      runInterval();
+      
+      return {
+        clear() { clearTimeout(timeout) }
+      };
+    }
+
+    setRandomInterval(() => generateNewTransaction(true), 3000, 7000); // от 3 до 7 секунд
 
       // Показать плавающую кнопку при скролле вниз
     const floatBtn = document.querySelector('.floating-btn');
