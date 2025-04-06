@@ -400,11 +400,14 @@
         const profitValue = tariffProfit.match(/\+(.+)%/)[1];
         
         // Обновляем информацию на странице
-        document.querySelector('.current-tariff').textContent = tariffName;
-        document.querySelector('.stats-row .highlight').textContent = tariffName;
-        document.querySelector('.stats-row span.highlight:last-child').textContent = profitValue + '%';
+        // 1. В карточке тарифов
+        document.querySelector('.current-tariff').textContent = `Тариф "${tariffName}"`;
         document.querySelector('.tariff-card div[style*="color: #888"]').textContent = 
           'Текущая ставка: ' + profitValue + '%';
+          
+        // 2. В блоке "Ваш депозит"
+        document.querySelector('.stats-row .highlight').textContent = tariffName;
+        document.querySelectorAll('.stats-row .highlight')[1].textContent = profitValue + '%';
       });
     });
   </script>
