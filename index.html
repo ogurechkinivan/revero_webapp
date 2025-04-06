@@ -171,7 +171,47 @@
     nav a.active {
       color: #b4ff1f;
     }
-  </style>
+      .floating-btn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: #b4ff1f;
+      color: #000;
+      font-weight: bold;
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      z-index: 999;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .floating-btn:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+    .floating-btn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: #b4ff1f;
+      color: #000;
+      font-weight: bold;
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      z-index: 999;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .floating-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .floating-btn:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+</style>
 </head>
 <body>
   
@@ -265,6 +305,7 @@
         </div>
       </div>
     </div>
+      <div class="floating-btn">Пополнить</div>
   </main>
 
   <footer>
@@ -366,6 +407,18 @@
 
     setInterval(generateNewTransaction, 3000); // каждые 7 секунд
 
-  </script>
+      // Показать плавающую кнопку при скролле вниз
+    const floatBtn = document.querySelector('.floating-btn');
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > 100) {
+        floatBtn.classList.add('visible');
+      } else {
+        floatBtn.classList.remove('visible');
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    });
+</script>
 </body>
 </html>
