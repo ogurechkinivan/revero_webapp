@@ -200,6 +200,26 @@ body {
     </nav>
   </footer>
 <script>
+  // Добавляем параметры к ссылкам навигации
+  function updateNavigationLinks() {
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username");
+    const userid = params.get("id");
+    
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      if (link.href.indexOf('?') === -1) { // если в ссылке еще нет параметров
+        const url = new URL(link.href);
+        if (username) url.searchParams.set("username", username);
+        if (userid) url.searchParams.set("id", userid);
+        link.href = url.toString();
+      }
+    });
+  }
+
+  // Вызываем функцию после загрузки страницы
+  document.addEventListener('DOMContentLoaded', updateNavigationLinks);
+
   const params = new URLSearchParams(window.location.search);
   const username = params.get("username");
   if (username) {
