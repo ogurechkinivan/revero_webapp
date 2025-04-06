@@ -176,12 +176,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <span>Revero</span>
-      <span>Мини-приложение</span>
-    </div>
-  </header>
+  
 
   <main>
     <div class="topbar">
@@ -327,7 +322,7 @@
       const now = new Date();
       const offset = Math.floor(Math.random() * 10);
       now.setMinutes(now.getMinutes() - offset);
-      return `${now.getDate()} апреля 2025 | ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+      return `${now.getDate()} апреля ${now.getFullYear()} | ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
     }
     document.querySelectorAll(".time").forEach(el => {
       el.textContent = generateRandomTime();
@@ -371,7 +366,7 @@
       }
     }
 
-    setInterval(generateNewTransaction, 5000); // каждые 7 секунд
+    setInterval(generateNewTransaction, 3000); // каждые 7 секунд
 
   </script>
 </body>
