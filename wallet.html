@@ -3,7 +3,7 @@
 <head>
   
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Revero - Кошелёк</title>
   <style>
     main {
@@ -108,6 +108,8 @@ body {
       border-radius: 8px;
       width: 100%;
       margin: 0.5rem 0;
+      -webkit-appearance: none;
+      appearance: none;
     }
     .calculator output {
       color: #b4ff1f;
@@ -274,6 +276,34 @@ body {
       idSpan.textContent = `ID: ${userid}`;
     }
   }
+
+  // Обработчики для скрытия клавиатуры
+  document.addEventListener('touchstart', function(e) {
+    if (!e.target.matches('input[type="number"]')) {
+      document.activeElement?.blur();
+    }
+  }, { passive: true });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.matches('input[type="number"]')) {
+      document.activeElement?.blur();
+    }
+  });
+
+  // Обработчики для полей ввода
+  const numberInputs = document.querySelectorAll('input[type="number"]');
+  numberInputs.forEach(input => {
+    input.addEventListener('blur', function() {
+      window.scrollTo(0, 0);
+    });
+    
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.blur();
+      }
+    });
+  });
 </script>
 </body>
 </html>
