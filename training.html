@@ -209,6 +209,27 @@
       color: #ff4f4f;
     }
     /* Конец стилей для блока криптовалют */
+    /* Стили для кнопки обучения */
+    .training-button {
+      display: block;
+      width: 100%;
+      background: #b4ff1f;
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .training-button:active {
+      transform: scale(0.98);
+      background: #a3e61c;
+    }
+    /* Конец стилей для кнопки обучения */
   </style>
 </head>
 <body>
@@ -218,56 +239,6 @@
     </div>
 
     <div class="section">
-      <div class="card">
-        <h3>Шаги для начала работы</h3>
-        <div class="steps-list">
-          <div class="step">
-            <div class="step-number">1</div>
-            <div>Пополните баланс любым удобным способом</div>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <div>Выберите подходящий тарифный план</div>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <div>Получайте стабильную прибыль каждый день</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Обучающие видео</h3>
-        <div class="video-item">
-          <div class="video-icon">▶️</div>
-          <div>Как пополнить баланс и вывести средства</div>
-        </div>
-        <div class="video-item">
-          <div class="video-icon">▶️</div>
-          <div>Как выбрать оптимальный тарифный план</div>
-        </div>
-        <div class="video-item">
-          <div class="video-icon">▶️</div>
-          <div>Как работает партнёрская программа</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Часто задаваемые вопросы</h3>
-        <div class="faq-item">
-          <div class="faq-title">Какой минимальный депозит?</div>
-          <div class="faq-text">Минимальная сумма для начала работы составляет 100₽. Вы можете пополнить баланс любым удобным способом.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-title">Когда начисляется прибыль?</div>
-          <div class="faq-text">Прибыль начисляется автоматически каждые сутки в 12:00 по московскому времени. Вы можете отслеживать начисления в личном кабинете.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-title">Как работает партнёрская программа?</div>
-          <div class="faq-text">Приглашайте новых пользователей по своей реферальной ссылке и получайте 7% с каждого пополнения баланса. Выплаты происходят моментально.</div>
-        </div>
-      </div>
-
       <div class="card">
         <h3>Популярные криптовалюты</h3>
         <div class="crypto-grid">
@@ -295,6 +266,17 @@
           </div>
           <div class="crypto-item">
             <div class="crypto-info">
+              <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="SOL" class="crypto-icon">
+              <div>
+                <div class="crypto-name">Solana</div>
+                <div class="crypto-symbol">SOL</div>
+              </div>
+            </div>
+            <div class="crypto-price">0₽</div>
+            <div class="crypto-change positive">+0.00%</div>
+          </div>
+          <div class="crypto-item">
+            <div class="crypto-info">
               <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="crypto-icon">
               <div>
                 <div class="crypto-name">Tether</div>
@@ -305,6 +287,46 @@
             <div class="crypto-change positive">+0.00%</div>
           </div>
         </div>
+      </div>
+
+      <div class="card">
+        <h3>Шаги для начала работы</h3>
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>Пополните баланс любым удобным способом</div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>Выберите подходящий тарифный план</div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>Получайте стабильную прибыль каждый день</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Часто задаваемые вопросы</h3>
+        <div class="faq-item">
+          <div class="faq-title">Какой минимальный депозит?</div>
+          <div class="faq-text">Минимальная сумма для начала работы составляет 100₽. Вы можете пополнить баланс любым удобным способом.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-title">Когда начисляется прибыль?</div>
+          <div class="faq-text">Прибыль начисляется автоматически каждые сутки в 12:00 по московскому времени. Вы можете отслеживать начисления в личном кабинете.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-title">Как работает партнёрская программа?</div>
+          <div class="faq-text">Приглашайте новых пользователей по своей реферальной ссылке и получайте 7% с каждого пополнения баланса. Выплаты происходят моментально.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Начать обучение</h3>
+        <p style="color: #888; margin-bottom: 1rem;">Пройдите бесплатное обучение и начните зарабатывать уже сегодня. Мы научим вас всем необходимым навыкам для успешной торговли.</p>
+        <a href="#" class="training-button">Начать обучение</a>
       </div>
     </div>
   </main>
@@ -365,34 +387,35 @@
     async function updateCryptoPrices() {
       try {
         // Получаем курсы криптовалют
-        const coins = ['bitcoin', 'ethereum', 'tether'];
-        const responses = await Promise.all(
-          coins.map(coin => 
-            fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=rub,usd&include_24h_change=true`)
-              .then(response => response.json())
-          )
-        );
-
-        // Обновляем цены на странице
-        const priceElements = document.querySelectorAll('.crypto-price');
-        const changeElements = document.querySelectorAll('.crypto-change');
-
-        responses.forEach((data, index) => {
-          const coin = coins[index];
-          const price = data[coin].rub;
-          const change = data[coin].usd_24h_change || 0;
-          
-          if (priceElements[index]) {
-            priceElements[index].textContent = formatPrice(price);
+        const coins = ['bitcoin', 'ethereum', 'solana', 'tether'];
+        
+        for (const coin of coins) {
+          try {
+            const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=rub&include_24hr_change=true`);
+            const data = await response.json();
+            
+            const priceElement = document.querySelector(`.crypto-item:nth-child(${coins.indexOf(coin) + 1}) .crypto-price`);
+            const changeElement = document.querySelector(`.crypto-item:nth-child(${coins.indexOf(coin) + 1}) .crypto-change`);
+            
+            if (data[coin]) {
+              const price = data[coin].rub;
+              const change = data[coin].rub_24h_change || 0;
+              
+              if (priceElement) {
+                priceElement.textContent = formatPrice(price);
+              }
+              
+              if (changeElement) {
+                const changeText = change.toFixed(2);
+                const isPositive = change >= 0;
+                changeElement.textContent = `${isPositive ? '+' : ''}${changeText}%`;
+                changeElement.className = `crypto-change ${isPositive ? 'positive' : 'negative'}`;
+              }
+            }
+          } catch (error) {
+            console.error(`Ошибка при получении курса для ${coin}:`, error);
           }
-          
-          if (changeElements[index]) {
-            const changeText = change.toFixed(2);
-            const isPositive = change >= 0;
-            changeElements[index].textContent = `${isPositive ? '+' : ''}${changeText}%`;
-            changeElements[index].className = `crypto-change ${isPositive ? 'positive' : 'negative'}`;
-          }
-        });
+        }
       } catch (error) {
         console.error('Ошибка при получении курсов криптовалют:', error);
       }
