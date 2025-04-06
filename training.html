@@ -5,39 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Revero - Обучение</title>
   <style>
+    main {
+      padding-bottom: 100px;
+    }
     body {
       margin: 0;
       font-family: sans-serif;
-      background-color: #0f0f0f;
+      background: #0f0f0f;
       color: #fff;
     }
-    header, footer {
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 1rem;
-      background-color: #1a1a1a;
-    }
-    main {
-      padding: 1rem;
-    }
-    h3 {
-      margin-top: 1.5rem;
-    }
-    .step, .video, .faq {
       background: #1a1a1a;
-      padding: 1rem;
-      border-radius: 8px;
       margin-bottom: 1rem;
     }
-    .step span {
+    .topbar .username {
+      background: #2a2a2a;
+      color: #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .section {
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #b4ff1f10);
+      pointer-events: none;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #888;
+      font-size: 16px;
+    }
+    .steps-list {
+      margin: 1rem 0;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      transition: transform 0.2s;
+    }
+    .step:last-child {
+      margin-bottom: 0;
+    }
+    .step:active {
+      transform: scale(0.99);
+    }
+    .step-number {
       color: #b4ff1f;
       font-weight: bold;
+      margin-right: 0.75rem;
+      font-size: 18px;
+    }
+    .video-item {
+      display: flex;
+      align-items: center;
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .video-item:last-child {
+      margin-bottom: 0;
+    }
+    .video-item:active {
+      transform: scale(0.99);
+    }
+    .video-icon {
+      margin-right: 0.75rem;
+      font-size: 20px;
+    }
+    .faq-item {
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+    }
+    .faq-item:last-child {
+      margin-bottom: 0;
     }
     .faq-title {
       font-weight: bold;
       margin-bottom: 0.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+    .faq-title::before {
+      content: '❓';
+      margin-right: 0.5rem;
+      font-size: 16px;
     }
     .faq-text {
-      color: #ccc;
+      color: #888;
       font-size: 14px;
+      line-height: 1.5;
     }
     nav {
       position: fixed;
@@ -46,14 +134,26 @@
       background: #1a1a1a;
       display: flex;
       justify-content: space-around;
-      padding: 0.5rem 0;
+      padding: 0.75rem 0;
       border-top: 1px solid #333;
+      z-index: 999;
+      min-height: 72px;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
     }
     nav a {
       color: #888;
       text-align: center;
       font-size: 12px;
       text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    nav a svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
     }
     nav a.active {
       color: #b4ff1f;
@@ -61,40 +161,110 @@
   </style>
 </head>
 <body>
-  <header>
-    <strong>Revero</strong> — Обучение
-  </header>
-
   <main>
-    <h3>Шаги для старта</h3>
-    <div class="step"><span>1.</span> Пополните баланс</div>
-    <div class="step"><span>2.</span> Выберите тариф</div>
-    <div class="step"><span>3.</span> Получайте прибыль каждый день</div>
-
-    <h3>Обучающие видео</h3>
-    <div class="video">▶️ Как пополнить баланс</div>
-    <div class="video">▶️ Как выбрать тариф</div>
-    <div class="video">▶️ Как работает партнёрская программа</div>
-
-    <h3>Вопросы и ответы</h3>
-    <div class="faq">
-      <div class="faq-title">Какой минимальный депозит?</div>
-      <div class="faq-text">Минимальный депозит составляет 100₽.</div>
+    <div class="topbar">
+      <div class="username" id="tg-username">@user</div>
     </div>
-    <div class="faq">
-      <div class="faq-title">Когда начисляется прибыль?</div>
-      <div class="faq-text">Прибыль начисляется раз в сутки в 12:00 по МСК.</div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Шаги для начала работы</h3>
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>Пополните баланс любым удобным способом</div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>Выберите подходящий тарифный план</div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>Получайте стабильную прибыль каждый день</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Обучающие видео</h3>
+        <div class="video-item">
+          <div class="video-icon">▶️</div>
+          <div>Как пополнить баланс и вывести средства</div>
+        </div>
+        <div class="video-item">
+          <div class="video-icon">▶️</div>
+          <div>Как выбрать оптимальный тарифный план</div>
+        </div>
+        <div class="video-item">
+          <div class="video-icon">▶️</div>
+          <div>Как работает партнёрская программа</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Часто задаваемые вопросы</h3>
+        <div class="faq-item">
+          <div class="faq-title">Какой минимальный депозит?</div>
+          <div class="faq-text">Минимальная сумма для начала работы составляет 100₽. Вы можете пополнить баланс любым удобным способом.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-title">Когда начисляется прибыль?</div>
+          <div class="faq-text">Прибыль начисляется автоматически каждые сутки в 12:00 по московскому времени. Вы можете отслеживать начисления в личном кабинете.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-title">Как работает партнёрская программа?</div>
+          <div class="faq-text">Приглашайте новых пользователей по своей реферальной ссылке и получайте 7% с каждого пополнения баланса. Выплаты происходят моментально.</div>
+        </div>
+      </div>
     </div>
   </main>
 
   <footer>
     <nav>
-      <a href="index.html">Главная</a>
-      <a href="wallet.html">Кошелек</a>
-      <a href="account.html">Кабинет</a>
-      <a href="partners.html">Партнеры</a>
-      <a class="active" href="#">Обучение</a>
+      <a href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Главная
+      </a>
+      <a href="wallet.html">
+        <svg viewBox="0 0 24 24"><path d="M21 7H3V5h18v2zm0 2H3v10h18V9zM3 19c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3z"/></svg>
+        Кошелек
+      </a>
+      <a href="account.html">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 8 1.3 8 4v2H4v-2c0-2.7 5.3-4 8-4zm0-2a4 4 0 100-8 4 4 0 000 8z"/></svg>
+        Кабинет
+      </a>
+      <a href="partners.html">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 2.05 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        Партнеры
+      </a>
+      <a class="active" href="#">
+        <svg viewBox="0 0 24 24"><path d="M12 3C8.1 3 5 6.1 5 10c0 3.9 3.1 7 7 7s7-3.1 7-7c0-3.9-3.1-7-7-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/></svg>
+        Обучение
+      </a>
     </nav>
   </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username");
+    const id = params.get("id");
+
+    if (username) {
+      const userSpan = document.getElementById("tg-username");
+      if (userSpan) {
+        userSpan.textContent = "@" + username;
+      }
+    }
+
+    // Добавляем параметры к ссылкам навигации
+    if (username && id) {
+      document.querySelectorAll("nav a").forEach(link => {
+        const href = new URL(link.getAttribute("href"), window.location.origin);
+        href.searchParams.set("username", username);
+        href.searchParams.set("id", id);
+        link.setAttribute("href", href.pathname + href.search);
+      });
+    }
+  </script>
 </body>
 </html>
