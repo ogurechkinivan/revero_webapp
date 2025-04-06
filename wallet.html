@@ -37,6 +37,11 @@ body {
       border-radius: 8px;
       font-weight: bold;
       font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .topbar .btn:active {
+      transform: scale(0.98);
     }
     .section {
       padding: 1rem;
@@ -44,17 +49,30 @@ body {
     .balance-box {
       background: #1a1a1a;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-bottom: 1rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .balance-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #b4ff1f10);
+      pointer-events: none;
     }
     .balance-box h2 {
       margin: 0;
-      font-size: 24px;
+      font-size: 32px;
+      font-weight: bold;
     }
     .balance-box p {
       margin: 0.5rem 0 0;
-      color: #aaa;
+      color: #888;
     }
     .actions {
       display: flex;
@@ -68,32 +86,53 @@ body {
       background: #b4ff1f;
       color: #000;
       font-weight: bold;
-      border-radius: 10px;
+      border-radius: 12px;
       margin: 0 1%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn-action:active {
+      transform: scale(0.98);
     }
     .calculator {
       background: #1a1a1a;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    }
+    .calculator input {
+      background: #2a2a2a;
+      border: none;
+      color: #fff;
+      padding: 0.75rem;
+      border-radius: 8px;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+    .calculator output {
+      color: #b4ff1f;
+      font-weight: bold;
+      font-size: 20px;
     }
     .info-box {
       background: #1a1a1a;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-bottom: 1rem;
     }
     .info-box a {
       color: #b4ff1f;
       text-decoration: none;
+      font-weight: bold;
     }
     .transactions {
       background: #1a1a1a;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
+    }
+    .transactions h3 {
+      margin-top: 0;
+      color: #888;
     }
     .transactions .empty {
       text-align: center;
@@ -152,14 +191,14 @@ body {
       </div>
 
       <div class="calculator">
-  <form oninput="result.value = (amount.value * rate.value).toFixed(2) + '₽'">
+  <form oninput="result.value = ((amount.value * rate.value) / 100).toFixed(2) + '₽'">
     <label>Сумма пополнения:</label><br>
     <input type="number" name="amount" value="1000" min="0" style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 8px; border: none;">
 
     <label>Процент в день (%):</label><br>
     <input type="number" name="rate" value="2.1" step="0.001" min="0" style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 8px; border: none;">
 
-    <output name="result" style="display: block; margin-top: 1rem; font-weight: bold; font-size: 16px;">17.00₽</output>
+    <output name="result" style="display: block; margin-top: 1rem; font-weight: bold; font-size: 16px;">21.00₽</output>
   </form>
 </div>
 
