@@ -411,5 +411,19 @@
       lastScrollTop = st <= 0 ? 0 : st;
     });
 </script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const username = params.get("username");
+  const id = params.get("id");
+
+  if (username && id) {
+    document.querySelectorAll("nav a").forEach(link => {
+      const href = new URL(link.getAttribute("href"), window.location.origin);
+      href.searchParams.set("username", username);
+      href.searchParams.set("id", id);
+      link.setAttribute("href", href.pathname + href.search);
+    });
+  }
+</script>
 </body>
 </html>
