@@ -195,14 +195,6 @@ body {
       <div class="card">
         <h3>Калькулятор доходности</h3>
         <div class="calculator">
-          <div class="input-group">
-            <label>Сумма инвестиции</label>
-            <div class="input-wrapper">
-              <input type="number" id="investment" placeholder="Введите сумму" min="100" step="100">
-              <span>₽</span>
-            </div>
-          </div>
-
           <form oninput="result.value = ((amount.value * rate.value) / 100).toFixed(2) + '₽'">
             <label>Сумма пополнения:</label><br>
             <input type="number" name="amount" value="1000" min="0" style="width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 8px; border: none;">
